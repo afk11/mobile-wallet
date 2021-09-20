@@ -30,6 +30,7 @@ import org.mifos.mobilewallet.core.domain.model.NotificationPayload;
 import org.mifos.mobilewallet.core.domain.model.client.NewClient;
 import org.mifos.mobilewallet.core.domain.model.twofactor.AccessToken;
 import org.mifos.mobilewallet.core.domain.model.twofactor.DeliveryMethod;
+import org.mifos.mobilewallet.core.domain.model.user.LoginUser;
 import org.mifos.mobilewallet.core.domain.model.user.NewUser;
 import org.mifos.mobilewallet.core.domain.usecase.client.CreateClient;
 import org.mifos.mobilewallet.core.domain.usecase.user.CreateUser;
@@ -252,7 +253,7 @@ public class FineractRepository {
     //self user apis
 
     public Observable<UserEntity> loginSelf(String username, String password) {
-        return selfApiManager.getAuthenticationApi().authenticate(username, password);
+        return selfApiManager.getAuthenticationApi().authenticate(new LoginUser(username, password));
     }
 
     public Observable<Client> getSelfClientDetails(long clientId) {
